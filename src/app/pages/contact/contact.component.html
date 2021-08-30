@@ -1,0 +1,81 @@
+<!-- APP HEADER -->
+<app-header [selectedPage]="'contact'"></app-header>
+
+<!-- APP CONTENT STARTS -->
+<div class="container-fluid">
+  <div class="header">
+    <h1>Contact Us</h1>
+  </div>
+</div>
+
+<!-- <div class="section container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56045.98362204303!2d77.34535882379768!3d28.603557251737072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5631312c2f3%3A0x2bf06ebf1e2dc577!2sNoida%2C%20Uttar%20Pradesh%20201307!5e0!3m2!1sen!2sin!4v1619180061123!5m2!1sen!2sin"></iframe>
+</div> -->
+
+<div class="section container">
+  <h1 class="title">GET IN TOUCH</h1>
+
+  <div class="row">
+    <div class="card col-md-6 mt-4 p-4">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Address</h4>
+          <p>Bisrakh Road, Gautam Budhha Nagar, 201306</p>
+        </div>
+        <div class="col-md-12">
+          <h4>Email Address</h4>
+          <p>contact@svppi.org</p>
+        </div>
+        <!-- <div class="col-md-12">
+          <h4>Phone Number</h4>
+          <p>+91 - 9191919191</p>
+        </div> -->
+      </div>
+    </div>
+    <div class="card col-md-6 mt-4 p-4">
+      <form action="https://formsubmit.co/svppiorg@gmail.com" method="POST">
+        <div class="row">
+          <div class="col-md-6 d-none">
+            <div class="form-group">
+              <label for="formGroupExampleInput"></label>
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" class="form-control" name="_next" value="https://svppi.org/thankyou">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="formGroupExampleInput">NAME</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="formGroupExampleInput">EMAIL</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="formGroupExampleInput">PHONE NO.</label>
+              <input type="text" class="form-control" name="_subject">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="formGroupExampleInput">MESSAGE</label>
+              <textarea class="form-control" rows="3" name="message"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-outline-danger">SUBMIT</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="footer-gap"></div>
+
+<!-- APP FOOTER -->
+<app-footer></app-footer>

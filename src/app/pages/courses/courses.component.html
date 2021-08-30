@@ -1,0 +1,45 @@
+<!-- HEADER -->
+<app-header [selectedPage]="'courses'"></app-header>
+
+<!-- APP CONTENT STARTS -->
+<div class="container-fluid">
+    <div class="header">
+        <h1>Courses</h1>
+    </div>
+</div>
+
+<!-- COURSES -->
+<div class="section container">
+
+    <h1 class="title">All Courses</h1>
+    <p class="subtitle">Special opportunity to pursue further courses for students.</p>
+
+    <div class="row courses">
+        <ng-container *ngIf="courses">
+          <div *ngFor="let course of courses" class="course col-md-4">
+            <div>
+              <img src="../../../assets/images/icons/graduate-cap.png" alt="icon" width="45">
+              <h3>{{course.name}}</h3>
+              <p>{{course.desc}}</p>
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="w-100">Eligibility: {{course.eligibility}}th</span>
+                </div>
+                <div class="col-md-6">
+                  <span class="w-100">Duration: {{course.duration}}Y</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!courses.length" class="col-md-12">
+            <p class="text-center">Please add course and it will show up here.</p>
+          </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="footer-gap"></div>
+
+<!-- FOOTER -->
+<app-footer></app-footer>

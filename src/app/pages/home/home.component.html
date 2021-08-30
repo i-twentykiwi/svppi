@@ -1,0 +1,129 @@
+<!-- APP HEADER -->
+<app-header [selectedPage]="'home'"></app-header>
+
+<!-- APP CONTENT STARTS -->
+
+<!-- CAROUSEL -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ngb-carousel #MainCarousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+        <ng-template ngbSlide *ngFor="let img of images; index as i">
+          <div class="carousel-caption text-left">
+            <h1>Sardar Vallabhbhai Patel Paramedical Institute</h1>
+          </div>
+          <a href="#" target="_blank" rel="nofollow noopener noreferrer">
+            <div class="picsum-img-wrapper">
+              <img [src]="img" alt="My image {{i + 1}} description">
+              <div class="layer"></div>
+            </div>
+          </a>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT + NOTICEBOARD -->
+<div class="section container">
+  <div class="about row">
+    <div class="col-md-7">
+      <h2>ABOUT SARDAR VALLABHBHAI PATEL PARAMEDICAL INSTITUTE</h2>
+      <p>
+        Inspired from the learning and ideology of Shri Sardar Vallabhbhai Patel,
+        Sardar Vallabhbhai Patel Paramedical Institute (SVPPI) was founded with the egalitarian goal of
+        ensuring equitable access to quality education to all. It has become a trusted name in the field of
+        paramedical health sciences education.
+      </p>
+      <p>
+        SVPPI is managed and run by group of highly motivated &amp; revered healthcare leaders with zeal for
+        transforming the field of paramedical &amp; allied healthcare landscape. We are affiliated with renowned
+        forerunners of healthcare world- hospital groups and chain of healthcare clinics to enable our
+        students experience, learn, acclimatize and internalize the best in class clinical practices from the
+        leaders.
+      </p>
+      <button (click)="goTo('/about')" class="btn btn-outline-danger mb-4">Read More</button>
+    </div>
+    <div class="noticeboard col-md-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h1 class="card-title"><img src="../../../assets/images/icons/notice.png" alt="icon">ANNOUNCEMENTS</h1>
+          <marquee direction="up" width="100%" height="310">
+            <p>Result has been promoted for session 2020-2021</p>
+            <p>Admission Open for Session 2021-2022</p>
+          </marquee>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<div class="section container">
+
+  <h1 class="title">Popular Courses</h1>
+  <p class="subtitle">Special opportunity to pursue further courses for students.</p>
+
+  <div class="row courses">
+    <ng-container *ngIf="courses">
+      <div *ngFor="let course of courses" class="course col-md-4">
+        <div>
+          <img src="../../../assets/images/icons/graduate-cap.png" alt="icon" width="45">
+          <h3>{{course.name}}</h3>
+          <p>{{course.desc}}</p>
+          <!-- <hr>
+              <div class="row">
+                <div class="col-6">
+                  <span class="w-100">Eligibility: {{course.eligibility}}th</span>
+                </div>
+                <div class="col-6">
+                  <span class="w-100">Duration: {{course.duration}}Y</span>
+                </div>
+              </div> -->
+        </div>
+      </div>
+      <div *ngIf="!courses.length" class="col-md-12">
+        <p class="text-center">Please add course and it will show up here.</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="section container">
+  <h1 class="title">What Our Student Says</h1>
+  <p class="subtitle">Find out what our students think about us</p>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ngb-carousel class="testimonials-carousel" #carousel [interval]="2000">
+        <ng-template ngbSlide *ngFor="let testimonial of testimonials">
+          <div class="testimonials row d-flex justify-content-center">
+            <div class="testimonial col-md-8">
+              <div class="p-4">
+                <div class="desc">
+                  <p>{{testimonial.quote}}</p>
+                  <h3>{{testimonial.name}}</h3>
+                  <span>{{testimonial.post}} ({{testimonial.hospital}})</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section container">
+  <div class="cta">
+    <h1>Enroll for our Various Online Courses Anywhere From The World</h1>
+    <a [routerLink]="'/contact'" class="btn btn-outline-danger">CONTACT US</a>
+  </div>
+</div>
+
+<!-- APP CONTENT ENDS -->
+
+<!-- APP FOOTER -->
+<app-footer></app-footer>

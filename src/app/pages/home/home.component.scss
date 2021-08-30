@@ -1,0 +1,206 @@
+.courses {
+
+    .course {
+        margin-bottom: 32px;
+    }
+
+    .course > div {
+        height: 100%;
+        padding: 16px;
+        border-radius: 10px;
+        background: rgba(255,0,0,0.05);
+
+        h3 {
+        text-align: left;
+        font-size: 18px;
+        margin: 10px 0;
+        font-family: "PoppinsBold";
+        }
+
+        p {
+            text-align: left;
+            font-size: 14px;
+            color: #777;
+            font-family: "PoppinsLight";
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+}
+
+.about {
+    h2 {
+        font-size: 34px;
+        letter-spacing: 1.5px;
+        font-family: "PoppinsExtraBold";
+    }
+
+    p {
+        margin-top: 24px;
+        font-family: "PoppinsRegular";
+        color: #777;
+    }
+
+    .noticeboard {
+        .card {
+            height: 310px;
+            overflow: hidden;
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+
+            .card-body {
+
+                .card-title {
+                    font-size: 22px;
+                    font-weight: 800;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid #ccc;
+
+                    img {
+                        width: 26px;
+                        margin-right: 16px;
+                    }
+                }
+
+                marquee {
+                    p {
+                        color: rgba(255,0,0,0.8);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.testimonials {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+
+    .testimonial {
+        float: none;
+        margin-bottom: 32px;
+        display: inline-block;
+    }
+        
+    .testimonial > div {
+        padding: 16px;
+        border-radius: 10px;
+        background: rgba(255,0,0,0.07);
+        
+        img {
+            display: inline;
+            height: 40px;
+            margin-left: 5px;
+            margin-right: 30px;
+            border-radius: 50%;
+        }
+
+        p {
+            padding: 0;
+            font-size: 15px;
+            color: #777;
+            font-family: "PoppinsLight";
+        }
+
+         h3 {
+            margin-top: 15px;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        span {
+            font-size: 13px;
+        }
+    }
+    
+}
+
+.cta {
+    margin: 50px auto;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../assets/images/others/banner2.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    text-align: center;
+    padding: 100px 0;
+
+    h1 {
+        padding: 0;
+        color: white;
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 40px;
+    }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+    .courses {
+      .course>div {
+        background: none;
+      }
+    }
+
+    .about {
+        h2 {
+            font-size: 32px;
+        }
+
+        .noticeboard {
+            .card {
+                .card-body {
+                    .card-title {
+                        font-size: 18px;
+
+                        img {
+                            width: 22px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .cta {
+        h1 {
+            padding: 0 16px;
+            font-size: 24px;
+        }
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+    .courses {
+        .course > div {
+            background: none;
+
+            img {
+                margin: 0 auto 8px;
+                display: block;
+            }
+
+            h3, p {
+                text-align: center;
+            }
+        }
+    }
+
+    .about {
+      h2 {
+        font-size: 28px;
+      }
+    }
+
+    .cta {
+      h1 {
+        padding: 0 16px;
+        font-size: 20px;
+      }
+    }
+}

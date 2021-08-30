@@ -1,0 +1,139 @@
+.header {
+    height: 50vh;
+    position: relative;
+    background-image: linear-gradient(to top, rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../../../assets/images/others/background.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+
+    h1 {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        font-size: 42px;
+        font-weight: 800;
+    }
+}
+
+.mission, .vision {
+    height: 100%;
+    padding: 20px;
+    background-color: #fff3f3;
+    border-right: 5px solid #f44336;
+
+    h1 {
+        font-size: 28px;
+        font-weight: 800 !important;
+    }
+
+    p {
+        color: #777;
+        margin-top: 16px;
+        font-family: "PoppinsLight";
+    }
+}
+
+.about {
+    h2 {
+        font-size: 38px;
+        font-weight: 800;
+    }
+
+    p {
+        color: #777;
+        margin-top: 24px;
+        font-family: "PoppinsLight";
+    }
+
+    img {
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .noticeboard {
+        .card {
+            height: 310px;
+            overflow: hidden;
+
+            .card-body {
+
+                .card-title {
+                    font-size: 22px;
+                    font-weight: 800;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid #ccc;
+
+                    img {
+                        width: 28px;
+                        margin-right: 4px;
+                    }
+                }
+
+                marquee {
+                    p {
+                        color: rgba(255,0,0,0.8);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.director-message {
+  p {
+    color: #777;
+    margin-top: 24px;
+    line-height: 30px;
+    font-family: "PoppinsLight";
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .courses {
+    .course>div {
+      background: none;
+    }
+  }
+
+  .about {
+    h2 {
+      font-size: 32px;
+    }
+
+    .noticeboard {
+      .card {
+        .card-body {
+          .card-title {
+            font-size: 18px;
+
+            img {
+              width: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cta {
+    h1 {
+      padding: 0 16px;
+      font-size: 24px;
+    }
+  }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+
+  .about {
+    h2 {
+      font-size: 28px;
+    }
+  }
+}

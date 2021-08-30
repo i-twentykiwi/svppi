@@ -1,0 +1,465 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between align-items-center">
+  <img class="nav-brand" src="../../../../assets/images/logo/logo.png" alt="logo" width="50">
+  <button (click)="logout()" class="btn btn-sm btn-outline-danger" type="button">Logout</button>
+</nav>
+
+<div class="section container mb-4">
+  <h1 class="title">Dashboard</h1>
+</div>
+
+<div class="container pt-4 pb-5">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="mb-0">Total Students</p>
+          <h1 class="mt-0">{{students?.length}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="mb-0">Total Courses</p>
+          <h1 class="mt-0">{{courses?.length}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+
+    <!-- STUDENT SECTION -->
+    <li ngbNavItem>
+      <a ngbNavLink>Students</a>
+      <ng-template ngbNavContent>
+        <div class="row">
+          <div class="col-md-8 mb-2">
+            <div class="input-group">
+              <input (keyup)="searchStudent($event)" type="text" class="form-control" placeholder="Search Student Detail...">
+            </div>
+          </div>
+          <div class="col-md-2 mb-2">
+            <button class="w-100 btn btn-outline-primary" type="button">Search</button>
+          </div>
+          <div class="col-md-2 mb-2">
+            <button (click)="showModal(AddNewStudent)" class="w-100 btn btn-outline-danger" type="button">Add Student</button>
+          </div>
+        </div>
+        <div *ngIf="students" class="row mt-4">
+          <div *ngFor="let student of students; let i = index" class="col-md-12 mb-3">
+            <div class="student-card card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-md-1"> {{i + 1}} <img class="pic ml-1" src="{{student.profilePic}}" alt=""></div>
+                  <div class="col-md-2">{{student.enrollmentNo}}</div>
+                  <div class="col-md-2">{{student.name}}</div>
+                  <div class="col-md-2">{{student.dob}}</div>
+                  <div class="col-md-3">
+                    <span *ngIf="student.result1">Result 1st</span>
+                    <span *ngIf="student.result2" class="ml-2">Result 2nd</span>
+                    <span *ngIf="!student.result1 && !student.result2" class="not-found">No result uploaded</span>
+                  </div>
+                  <div class="col-md-2 d-flex justify-content-end">
+                    <button (click)="showModal(AddNewResult, student.id)" class="btn btn-outline-danger btn-sm">Add Result</button>
+                    <button class="btn btn-outline-primary ml-2 btn-sm" (click)="editStudentModal(EditStudent, student)">Edit</button>
+                    <button class="btn btn-outline-success ml-2 btn-sm" (click)="viewPage(student.id)">View</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+
+    <!-- COURSES SECTION -->
+    <li ngbNavItem>
+      <a ngbNavLink>Courses</a>
+      <ng-template ngbNavContent>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <h5>All Courses List</h5>
+          </div>
+          <div class="col-md-10 mb-2">
+            <div class="input-group">
+              <input (keyup)="searchCourse($event)" type="text" class="form-control" placeholder="Search Course...">
+            </div>
+          </div>
+          <div class="col-md-2 mb-2">
+            <button (click)="showModal(AddNewCourse)" class="w-100 btn btn-outline-danger" type="button">Add Course</button>
+          </div>
+        </div>
+
+        <div class="courses row">
+          <ng-container *ngIf="courses">
+            <div *ngFor="let course of courses" class="course col-md-4">
+              <div>
+                <div class="head mb-2 d-flex justify-content-between align-items-center">
+                  <h3 class="w-60">{{course.name}}</h3>
+                  <div class="action-btns w-40">
+                    <button (click)="editCourseModal(EditCourse,course)" class="btn btn-sm btn-outline-primary mr-2" type="button">Edit</button>
+                    <button (click)="deleteCourse(course.id)" class="btn btn-sm btn-outline-danger" type="button">Delete</button>
+                  </div>
+                </div>
+                <p>{{course.desc}}</p>
+                <hr>
+                <div class="row">
+                  <div class="col-md-6">
+                    <span class="w-100">Eligibility: {{course.eligibility}}th</span>
+                  </div>
+                  <div class="col-md-6">
+                    <span class="w-100">Duration: {{course.duration}}Y</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!courses.length" class="col-md-12">
+              <p class="text-center">Please add course and it will show up here.</p>
+            </div>
+          </ng-container>
+        </div>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-4"></div>
+</div>
+
+
+<!-- ADD NEW COURSE MODAL -->
+<ng-template #AddNewCourse let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add New Course</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="courseForm" (ngSubmit)="addCourse()">
+    <div class="modal-body">
+      <div class="form-row p-4">
+        <div class="form-group col-md-6">
+          <label>Course Name</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Short Form</label>
+          <input type="text" class="form-control" formControlName="shortForm">
+        </div>
+        <div class="form-group col-md-12">
+          <label>Course Description</label>
+          <textarea class="form-control" rows="3" formControlName="desc"></textarea>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Eligibility</label>
+          <input type="text" class="form-control" formControlName="eligibility">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Duration</label>
+          <input type="text" class="form-control" formControlName="duration">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Popular</label>
+          <select class="form-control" formControlName="popular">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-danger">SAVE</button>
+    </div>
+  </form>
+</ng-template>
+
+<!-- EDIT COURSE MODAL -->
+<ng-template #EditCourse let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add New Course</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="editCourseForm" (ngSubmit)="updateCourse()">
+    <div class="modal-body">
+      <div class="form-row p-4">
+        <div class="form-group col-md-6 d-none">
+          <label>Course Id</label>
+          <input type="text" class="form-control" formControlName="id">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Name</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Short Form</label>
+          <input type="text" class="form-control" formControlName="shortForm">
+        </div>
+        <div class="form-group col-md-12">
+          <label>Course Description</label>
+          <textarea class="form-control" rows="3" formControlName="desc"></textarea>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Eligibility</label>
+          <input type="text" class="form-control" formControlName="eligibility">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Course Duration</label>
+          <input type="text" class="form-control" formControlName="duration">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-danger">SAVE</button>
+    </div>
+  </form>
+</ng-template>
+
+<!-- ADD STUDENT MODAL -->
+<ng-template #AddNewStudent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Student</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="container-fluid">
+      <input (keyup)="selectCourse($event)" type="text" class="form-control mb-4" placeholder="Search Course...">
+    </div>
+    <div *ngIf="searchToSelectCourses" class="container-fluid">
+      <div class="row mb-5">
+        <div *ngFor="let course of searchToSelectCourses" class="col-md-4">
+          <div class="card" (click)="selectedCourse(course.name, course.shortForm)">
+            <div class="card-body">
+              <h6>{{course.name}}</h6>
+              <p>[ {{course.shortForm}} ]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="addStudentForm">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Course Name</label>
+          <input type="text" class="form-control" formControlName="courseName">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Course Short Form</label>
+          <input type="text" class="form-control" formControlName="courseShortForm">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Session START - END</label>
+          <div class="input-group">
+            <input (keyup)="generateEnrollmentNo($event)" type="text" class="form-control" formControlName="sessionStart">
+            <input type="text" class="form-control" formControlName="sessionEnd">
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Enrollment No.</label>
+          <input type="text" class="form-control" formControlName="enrollmentNo">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Student Name</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Father Name</label>
+          <input type="text" class="form-control" formControlName="fatherName">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Date of Birth (DD/MM/YYYY)</label>
+          <input type="text" class="form-control" formControlName="dob">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Student Picture</label>
+          <input (change)="onFileSelected($event)" type="file" class="form-control" accept="image/*">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="addStudent()" type="button" class="btn btn-danger">SAVE</button>
+  </div>
+</ng-template>
+
+<!-- ADD RESULT MODAL -->
+<ng-template #AddNewResult let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Student Result</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addResultForm">
+      <div class="form-row">
+        <div class="form-group col-md-4 d-none">
+          <input type="text" class="form-control" formControlName="id">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Year</label>
+          <select class="custom-select" formControlName="year">
+            <option selected>Choose...</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Certificate No.</label>
+          <input type="text" class="form-control" formControlName="certificateNo">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Roll No.</label>
+          <input type="text" class="form-control" formControlName="rollNo">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Total Marks</label>
+          <input type="number" class="form-control" formControlName="totalMarks">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Obtained Marks</label>
+          <input (keyup)="calculatePercentage($event)" type="number" class="form-control" formControlName="obtainedMarks">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Percentage</label>
+          <input type="number" class="form-control" formControlName="percentage">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="addResult()" type="button" class="btn btn-danger">SAVE</button>
+  </div>
+</ng-template>
+
+<!-- EDIT STUDENT MODAL -->
+<ng-template #EditStudent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Student</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editStudentForm">
+      <div class="row">
+        <div class="col-md-12">
+          <h6>Student Details</h6>
+          <div class="form-row border p-3">
+            <div class="form-group col-md-4 d-none">
+              <input type="text" class="form-control" formControlName="id">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Course Name</label>
+              <input type="text" class="form-control" formControlName="courseName">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Course Short Form</label>
+              <input type="text" class="form-control" formControlName="courseShortForm">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Session START - END</label>
+              <div class="input-group">
+                <input (keyup)="generateEnrollmentNo($event)" type="text" class="form-control" formControlName="sessionStart">
+                <input type="text" class="form-control" formControlName="sessionEnd">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Enrollment No.</label>
+              <input type="text" class="form-control" formControlName="enrollmentNo">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Student Name</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Father Name</label>
+              <input type="text" class="form-control" formControlName="fatherName">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Date of Birth (DD/MM/YYYY)</label>
+              <input type="text" class="form-control" formControlName="dob">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Student Picture</label>
+              <input (change)="onFileSelected($event)" type="file" class="form-control" accept="image/*">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-3" [ngClass]="hideResult1? 'd-none' : ''">
+          <h6>1st Year Result</h6>
+          <div class="form-row border p-3">
+            <div class="form-group col-md-4">
+              <label>Certificate No.</label>
+              <input type="text" class="form-control" formControlName="firstYearCertificateNo">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Roll No.</label>
+              <input type="text" class="form-control" formControlName="firstYearRollNo">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Total Marks</label>
+              <input type="number" class="form-control" formControlName="firstYearTotalMarks">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Obtained Marks</label>
+              <input (keyup)="editCalculatePercentage(1,$event)" type="number" class="form-control" formControlName="firstYearObtainedMarks">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Percentage</label>
+              <input type="number" class="form-control" formControlName="firstYearPercentage">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-3" [ngClass]="hideResult2? 'd-none' : ''">
+          <h6>2nd Year Result</h6>
+          <div class="form-row border p-3">
+            <div class="form-group col-md-4">
+              <label>Certificate No.</label>
+              <input type="text" class="form-control" formControlName="secondYearCertificateNo">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Roll No.</label>
+              <input type="text" class="form-control" formControlName="secondYearRollNo">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Total Marks</label>
+              <input type="number" class="form-control" formControlName="secondYearTotalMarks">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Obtained Marks</label>
+              <input (keyup)="editCalculatePercentage(2,$event)" type="number" class="form-control" formControlName="secondYearObtainedMarks">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Percentage</label>
+              <input type="number" class="form-control" formControlName="secondYearPercentage">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="deleteStudent()" type="button" class="btn btn-secondary">Delete</button>
+    <button (click)="editResult()" type="button" class="btn btn-danger">Update</button>
+  </div>
+</ng-template>
+
+<app-toast aria-live="polite" aria-atomic="true"></app-toast>
+
+<ng-container *ngIf="showSpinner">
+  <div class="spinner">
+    <div class="box">
+      <h4>Please wait!!!</h4>
+      <p>Result is uploading...</p>
+    </div>
+  </div>
+</ng-container>

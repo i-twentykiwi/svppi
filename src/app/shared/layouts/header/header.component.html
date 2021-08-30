@@ -1,0 +1,18 @@
+<div class="logo-box d-flex justify-content-center">
+  <a href="/home" class="nav-brand">
+    <img src="../../../../assets/images/logo/logo.png" alt="logo">
+  </a>
+</div>
+<nav class="navbar justify-content-end sticky-top navbar-expand-lg navbar-light border-top border-bottom bg-white">
+    <button (click)="isNavbarCollapsed = !isNavbarCollapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li *ngFor="let page of pages" class="nav-item" [ngClass]="{'active' : isPageSelected(page.name)}">
+                <a class="nav-link" (click)="goTo(page)">{{page.name}}</a>
+            </li>
+        </ul>
+    </div>
+</nav>

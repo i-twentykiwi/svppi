@@ -1,0 +1,32 @@
+.bg-dark {
+    background: #1a1a1a !important;
+}
+
+.nav-brand {
+    cursor: pointer;
+    img {
+        width: 150px;
+        padding: 6px 16px;
+    }
+}
+
+.nav-link {
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+    .nav-brand {
+      img {
+        width: 130px;
+        padding: 6px 16px;
+      }
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+}

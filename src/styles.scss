@@ -1,1 +1,164 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import url('custom.scss');
+
+@font-face {
+    font-family: "PoppinsExtraBold";
+    src: url(./assets/fonts/Poppins/Poppins-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: "PoppinsBold";
+  src: url(./assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+
+@font-face {
+  font-family: "PoppinsMedium";
+  src: url(./assets/fonts/Poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+  font-family: "PoppinsRegular";
+  src: url(./assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: "PoppinsLight";
+  src: url(./assets/fonts/Poppins/Poppins-Light.ttf);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PoppinsMedium";
+}
+
+.nav-link {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+.container-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.carousel-caption {
+    top: 50%;
+    bottom: none;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-size: 42px;
+         letter-spacing: 2px;
+        font-family: "PoppinsExtraBold";
+        text-transform: uppercase;
+    }
+
+}
+
+.picsum-img-wrapper {
+    position: relative;
+
+    img {
+        width: 100%;
+    }
+
+    .layer {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba($color: #000000, $alpha: 0.4);
+    }
+}
+
+.text-rights, .text-reset {
+    font-size: 14px;
+}
+
+.text-reset {
+    color: black !important;
+}
+
+.card {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.spinner {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 2000;
+    background: rgba(0,0,0,0.72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .box {
+        display: inline-block;
+        padding: 20px 40px;
+        background: white;
+        border-radius: 8px;
+        text-align: center;
+
+        h4 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        p {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 0;
+            font-family: "PoppinsLight";
+        }
+    }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+    .section {
+        .title {
+            font-size: 28px;
+        }
+
+        .subtitle {
+            padding-top: 4px;
+            font-size: 12px;
+        }
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+    .carousel-caption {
+      h1 {
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+    }
+
+    .header {
+        height: 25vh !important;
+        h1 {
+            font-size: 34px !important;
+        }
+    }
+}

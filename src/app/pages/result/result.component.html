@@ -1,0 +1,72 @@
+<!-- HEADER -->
+<app-header [selectedPage]="'result'"></app-header>
+
+<!-- CONTENT STARTS -->
+<div class="container-fluid">
+  <div class="header">
+    <h1>Result</h1>
+  </div>
+</div>
+
+<div class="section container">
+  <h1 class="title">Result & Verification</h1>
+  <p class="subtitle">Please enter enrollment no. & date of birth to check result.</p>
+
+  <form [formGroup]="searchResultForm" (ngSubmit)="searchResult()">
+    <div class="row">
+      <div class="col-md-5 mb-2">
+        <input type="text" class="form-control" placeholder="Enrollment No." formControlName="enrollmentNo">
+      </div>
+      <div class="col-md-5 mb-2">
+        <input type="text" class="form-control" placeholder="Date of Birth (DD/MM/YYYY)" formControlName="dob">
+      </div>
+      <div class="col-md-2 mb-2">
+        <button type="submit" class="btn btn-outline-danger">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- CONTACT FORM -->
+<div class="section container">
+  <h1 class="title">GET IN TOUCH</h1>
+  <div class="card mt-4">
+    <div class="card-body p-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="formGroupExampleInput">NAME</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="formGroupExampleInput">EMAIL</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="formGroupExampleInput">PHONE NO.</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="formGroupExampleInput">MESSAGE</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-outline-danger">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-gap"></div>
+<!-- CONTENT ENDS -->
+
+<!-- FOOTER -->
+<app-footer></app-footer>

@@ -1,5 +1,5 @@
 {
-  "name": "paramedical-institue",
+  "name": "svppi",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,12 +14,23 @@
     "@angular/common": "~12.1.1",
     "@angular/compiler": "~12.1.1",
     "@angular/core": "~12.1.1",
+    "@angular/fire": "^6.1.5",
     "@angular/forms": "~12.1.1",
+    "@angular/localize": "~12.1.1",
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@fortawesome/angular-fontawesome": "^0.9.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "@ng-toolkit/universal": "^1.1.21",
+    "bootstrap": "^4.5.0",
+    "firebase": "^8.7.1",
+    "ngx-spinner": "^12.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "unique-random": "^3.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

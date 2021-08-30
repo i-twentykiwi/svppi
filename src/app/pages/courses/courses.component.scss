@@ -1,0 +1,53 @@
+.header {
+    height: 50vh;
+    position: relative;
+    background-image: linear-gradient(to top, rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../../../assets/images/others/background.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+
+    h1 {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        font-size: 42px;
+        font-weight: 800;
+    }
+}
+
+
+.courses {
+  margin-top: 3%;
+
+  .course {
+    margin-bottom: 32px;
+  }
+
+  .course>div {
+    height: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.05);
+
+    h3 {
+      text-align: left;
+      font-size: 18px;
+      margin: 10px 0;
+      font-family: "PoppinsBold";
+    }
+
+    p {
+      text-align: left;
+      font-size: 14px;
+      color: #777;
+      font-family: "PoppinsLight";
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}

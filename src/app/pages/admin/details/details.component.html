@@ -1,0 +1,121 @@
+<div class="fullscreen">
+  <div *ngIf="student" class="row mt-4">
+    <div class="col-md-12 mb-3">
+      <div class="student-card card">
+        <div class="card-body">
+          <div class="img-wrapper mb-3">
+            <img src="{{student.profilePic}}" alt="">
+          </div>
+          <div class="row">
+            <div class="col-md-6 mt-3">
+              <h5>Personal Details</h5>
+              <div class="row mt-3 border pt-3 pb-3 m-2">
+                <div class="col-6 col-md-6 mb-2">
+                  <p>{{student.name}}</p>
+                  <h6>Student Name</h6>
+                </div>
+                <div class="col-6 col-md-6 mb-2">
+                  <p>{{student.fatherName}}</p>
+                  <h6>Father Name</h6>
+                </div>
+                <div class="col-6 col-md-6 mb-2">
+                  <p>{{student.dob}}</p>
+                  <h6>Date of birth</h6>
+                </div>
+                <div class="col-6 col-md-6 mb-2">
+                  <p>{{student.sessionStart}} - {{student.sessionEnd}}</p>
+                  <h6>Session</h6>
+                </div>
+                <div class="col-6 col-md-6 mb-2">
+                  <p>{{student.enrollmentNo}}</p>
+                  <h6>Enrollment No.</h6>
+                </div>
+                <div class="col-6 col-md-6 mb-2">
+                  <p>{{student.courseName}} ~ {{student.courseShortForm}}</p>
+                  <h6>Course Name</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div *ngIf="student.result1" class="mt-3">
+                <h5>Results</h5>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result1.certificateNo}}</p>
+                            <h6>Certificate No.</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result1.rollNo}}</p>
+                            <h6>Roll No.</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>1st</p>
+                            <h6>Year</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result1.totalMarks}}</p>
+                            <h6>Total Marks</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result1.obtainedMarks}}</p>
+                            <h6>Obtained marks</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result1.percentage}}</p>
+                            <h6>Percentage</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="student.result2" class="row mt-3">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result2.certificateNo}}</p>
+                            <h6>Certificate No.</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result2.rollNo}}</p>
+                            <h6>Roll No.</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>2nd</p>
+                            <h6>Year</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result2.totalMarks}}</p>
+                            <h6>Total Marks</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result2.obtainedMarks}}</p>
+                            <h6>Obtained marks</h6>
+                          </div>
+                          <div class="col-6 col-md-6 mb-2">
+                            <p>{{student.result2.percentage}}</p>
+                            <h6>Percentage</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span *ngIf="!student.result1 && !student.result2" class="notice">No result Uploaded</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mb-3 d-flex justify-content-end">
+      <button (click)="goBack()" class="btn btn-outline-danger">Back to list</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+.admin-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+        font-weight: 800;
+    }
+}
+
+hr {
+    margin: 0;
+}
+
+.courses {
+  margin-top: 3%;
+
+  .w-60 {
+    width: 60%;
+  }
+
+  .w-40 {
+    width: 40%;
+  }
+
+  .course {
+    margin-bottom: 32px;
+  }
+
+  .course>div {
+    height: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.05);
+
+    h3 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    p {
+      text-align: left;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
+
+.result {
+  img {
+    display: block;
+    margin: 8px auto 24px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+  }
+
+  p {
+    color: mediumseagreen;
+  }
+}
+
+.student-card {
+  .pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+
+  span {
+    color: #00ff00;
+  }
+
+  span.not-found {
+    color: #ff0000;
+  }
+}
+
+.row > div {
+  font-size: 14px;
+
+  .btn {
+    font-size: 12px;
+  }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  .admin-header {
+      h2 {
+          font-size: 22px;
+      }
+  }
+}
